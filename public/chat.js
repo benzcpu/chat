@@ -1,7 +1,7 @@
 const  chatboxIcon=$(".moveEvent");
-const config={getchatTimeDelay:2000}
+const getchatTimeDelay=$('#chat_config').attr('getchatTimeDelay');
 $('.ch-chatbox .icon').click(function(){
-    console.log(this);
+
     if($(this).hasClass("down")){
         $(this).removeClass("down");
         $('.ch-chatbox .body').css({"height":"300px"});
@@ -17,13 +17,18 @@ $('.ch-chatbox .icon').click(function(){
 $(".ch-chatbox form").submit(function(event){
     event.preventDefault();
     var me=this;
+
+    if($(me).attr('login')){
+        facebook_login();
+        return false;
+    }
     getDataChat(me,"action");
     $(me)[0].reset();
 });
 
 setInterval(function(){
     getDataChat($(".ch-chatbox form"),"actionget");
-},config.getchatTimeDelay)
+},getchatTimeDelay)
 function getDataChat(me,action){
     var last_message=$(me).attr("data-last-message");
     $.ajax({
@@ -33,7 +38,6 @@ function getDataChat(me,action){
         success:function (data) {
             if(data!=""){
                 var data=JSON.parse(data);
-                console.log(data);
                 $(me).attr({"data-last-message":data.last_message});
                 var html="";
                 $.each(data.resaut,function(idx,item){
@@ -45,7 +49,6 @@ function getDataChat(me,action){
                         }
                     html=html+  '        </div>';
                         var text=item.ch_text;
-                        console.log(text.length);
                 });
                 var scoll="";
                 if( parseInt($($(me).siblings()[1]).scrollTop())==0 ||parseInt($($(me).siblings()[1]).scrollTop())== parseInt($($(me).siblings()[1])[0].scrollHeight)-parseInt($($(me).siblings()[1])[0].offsetHeight)) {
@@ -53,7 +56,7 @@ function getDataChat(me,action){
                 }
                     $($(me).siblings()[1]).append(html);
                  if(scoll=="true"){
-                    $($(me).siblings()[1]).scrollTop( 100000 );
+                    $($(me).siblings()[1]).scrollTop( 1000000000 );
                 }
             }
         }

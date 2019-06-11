@@ -1,19 +1,14 @@
 var server_url=window.location.origin;
-var partloginPHP='/user/user/facebook_login';
+var partloginPHP='/user/facebook_login';
 function getUserData() {
     FB.api('/me?fields=name,email', function(response) {
-        var tokenName = $('.BMcsrg_token').attr('name');
-        var tokenValue = $('.BMcsrg_token').val();
-        var newresponse= 'id'+'='+response.id+ '&' + 'name'+'='+response.name+ '&' +'email'+'='+response.email+ '&' + tokenName + '=' + tokenValue;
+        var newresponse= 'id'+'='+response.id+ '&' + 'name'+'='+response.name+ '&' +'email'+'='+response.email;
         $.ajax({
             url:server_url+partloginPHP,
             async: true,
             method: "POST",
             data: newresponse,
             success:function(data){
-                console.log(data);
-                data=JSON.parse(data);
-                loginSuccess(data);
                window.location=document.URL;
             }
         });
@@ -22,7 +17,7 @@ function getUserData() {
 window.fbAsyncInit = function() {
     //SDK loaded, initialize it
     FB.init({
-        appId      : '923467898045142',
+        appId      : $('#chat_config').attr('facebook_id'),
         xfbml      : true,
         version    : 'v2.2'
     });

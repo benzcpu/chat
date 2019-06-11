@@ -30,17 +30,21 @@ class Chat extends CI_Controller {
             $where=" and create_date >'".$_POST['last_message']."'";
         }
         $data['resaut']=$this->db->query("select * from tb_chat where ch_server like'%".$dataWHERE."%'".$where)->result();
-        foreach ($data['resaut'] as $key=>$item){
-            if($item->user_id==$_SESSION['user']['id']){
-                $item->self='me';
-            }else{
-                $item->self='you';
-            }
-        }
         if(count($data['resaut'])>=1){
+            foreach ($data['resaut'] as $key=>$item){
+                if(!isset($_SESSION['user']['id'])){
+                    $item->self='you';
+                }else{
+                    if($item->user_id==$_SESSION['user']['id']){
+                        $item->self='me';
+                    }else{
+                        $item->self='you';
+                    }
+                }
+            }
             $data['last_message']=$data['resaut'][count($data['resaut'])-1]->create_date;
-            echo json_encode($data);
         }
+        echo json_encode($data);
     }
 	public function message(){
 	    $data['post']=$_POST;

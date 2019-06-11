@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2019 at 06:27 AM
+-- Generation Time: Jun 11, 2019 at 09:24 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.1.30
 
@@ -61,7 +61,8 @@ INSERT INTO `tb_chat` (`ch_id`, `ch_name`, `ch_text`, `ch_server`, `user_id`, `c
 (133, 'benz', 'xx', 'http://localhost/chat/index.php/', 18, '2019-06-11 06:23:36'),
 (134, 'benz', 'vvv', 'http://localhost/chat/index.php/', 18, '2019-06-11 06:23:41'),
 (135, 'benz', 'asdasdasd', 'http://localhost/chat/index.php/', 18, '2019-06-11 06:23:50'),
-(136, 'benz', 'iquwieuoijasdasd', 'http://localhost/chat/index.php/', 18, '2019-06-11 06:23:54');
+(136, 'benz', 'iquwieuoijasdasd', 'http://localhost/chat/index.php/', 18, '2019-06-11 06:23:54'),
+(137, 'test', '\'\'', 'http://localhost/chat/index.php/', 17, '2019-06-11 08:14:39');
 
 -- --------------------------------------------------------
 
@@ -71,17 +72,21 @@ INSERT INTO `tb_chat` (`ch_id`, `ch_name`, `ch_text`, `ch_server`, `user_id`, `c
 
 CREATE TABLE `tb_user` (
   `user_id` int(11) NOT NULL,
-  `user_name` text NOT NULL
+  `user_name` text NOT NULL,
+  `user_facebook_id` text NOT NULL,
+  `user_facebook_name` text NOT NULL,
+  `user_facebook_email` text NOT NULL,
+  `create_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`user_id`, `user_name`) VALUES
-(16, 'benz'),
-(17, 'test'),
-(18, 'benz');
+INSERT INTO `tb_user` (`user_id`, `user_name`, `user_facebook_id`, `user_facebook_name`, `user_facebook_email`, `create_date`) VALUES
+(16, 'benz', '', '', '', '0000-00-00 00:00:00'),
+(17, 'test', '', '', '', '0000-00-00 00:00:00'),
+(18, 'benz', '', '', '', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -107,7 +112,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_chat`
 --
 ALTER TABLE `tb_chat`
-  MODIFY `ch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `ch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
