@@ -1,0 +1,66 @@
+.ch-chatbox{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+
+    width: 250px;
+}
+.ch-chatbox .head{
+    height: 20px;
+    width: 100%;
+    position: relative;
+    background-color: #66bfff;
+}
+.ch-chatbox .body .me{
+    text-align: right;
+
+    margin-top: 10px;
+    padding-left: 20px;
+
+    border-radius: 5px;
+}.ch-chatbox .body .me .text{
+     background-color: #66bfff;
+     padding: 4px;
+     border-radius: 5px;
+}
+.ch-chatbox .body .you{
+    text-align: left;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding-right: 20px;
+}
+.ch-chatbox .body .you .text{
+    background-color: #e8d578;
+    padding: 4px;
+    border-radius: 5px;
+}
+.ch-chatbox .body{
+    max-height: 300px;
+    height: 300px;
+    width: 100%;
+    position: relative;
+    background-color: #ecf0ff;
+    overflow: auto;
+}
+
+.ch-chatbox .head .icon{
+    position: absolute;
+    right: 0;
+    padding: 5px;
+}
+.ch-chatbox  .hover:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.ch-chatbox .text-input{
+    width: 80%;
+}
+.ch-chatbox .button{
+    width: 20%;
+}
+form{
+    display: block;
+    margin-top: 0em;
+    margin-block-end: 0em;
+}
