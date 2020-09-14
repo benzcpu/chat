@@ -35,7 +35,22 @@ $config['base_url'] = 'http://localhost/chat/index.php';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+function shapeSpace_check_https($type="") {
+    if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) {
+        if($type=="text"){
+            return 'https:';
+        }
+        return true;
+    }
+    if($type=="text"){
+        return 'http:';
+    }
+    return false;
+}
+
+$root = shapeSpace_check_https('text')."//".$_SERVER['HTTP_HOST'];
+$root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+$config['base_url']    = "$root";
 
 /*
 |--------------------------------------------------------------------------
